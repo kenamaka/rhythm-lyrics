@@ -41,11 +41,6 @@ app.use(session({
     
 }))
 
-// port assignment
-const port = process.env.port || 8000
-app.listen(port, () => console.log(`listening on ${port}`));
-
-
 //database connnection
 const db  = mysql.createPool({
     host            : process.env.MYSQL_HOST,
@@ -54,6 +49,10 @@ const db  = mysql.createPool({
     database        : process.env.MYSQL_DATABASE,
     port            : process.env.MYSQL_PORT
 })
+
+// port assignment
+const port = process.env.MYSQL_PORT || 3000
+app.listen(port, () => console.log(`listening on ${port}`));
 
 // const db  = mysql.createPool({
 //     connectionLimit : 100,
