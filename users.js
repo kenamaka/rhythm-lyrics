@@ -1,66 +1,9 @@
-//dependencies
-const express = require('express');
-const cors = require("cors")
-const mysql = require('mysql');
-const bodyPaser = require("body-parser")
-const bcrypt = require('bcrypt');
-const cookiesPaser = require("cookie-parser")
-const session = require("express-session")
-const MySQLStore = require("express");
-const { restart } = require('nodemon');
-const saltRounds = 10
-const app = express();
-require('dotenv').config();
+const express = require('express'),
+router = express.Router();
+  
 
+// user connections and data
 
-
-
-
-app.use(cors({
-    origin: ["http://localhost:3000"],
-    methods: ["GET", "POST","PUT","DELETE"],
-    credentials: true,
- }
-))
-
-//middlewares
-app.use(cookiesPaser())
-app.use(express.json())
-app.use(bodyPaser.urlencoded({ extended: true }))
-
-// session management
-app.use(session({
-    key: "userId",
-    secret: "userAccountActivityTracking50957",
-    resave: false,
-    saveUninitialized: false,
-    cookie: {
-        expires: 60 * 60 * 60 * 24 , 
-    }
-    
-}))
-
-// port assignment
-const port = process.env.port || 8000
-app.listen(port, () => console.log(`listening on ${port}`));
-
-
-//database connnection
-const db  = mysql.createPool({
-    host            : process.env.MYSQL_HOST,
-    user            : process.env.MYSQL_USER,
-    password        : process.env.MYSQL_PASSWORD,
-    database        : process.env.MYSQL_DATABASE,
-    port            : process.env.MYSQL_PORT
-})
-
-// const db  = mysql.createPool({
-//     connectionLimit : 100,
-//     host            : 'localhost',
-//     user            : 'root',
-//     password        : '',
-//     database        : 'fidelity_db'
-// })
 
 //register connection
 app.post("/api/register", (req, res) => {
@@ -468,3 +411,5 @@ app.get('api/logout', (req, res) => {
         res.send({message:"you are loggedout, click to on login to go back"})
     }
 })
+
+module.exports = router;
