@@ -6,8 +6,6 @@ const bodyPaser = require("body-parser")
 const bcrypt = require('bcrypt');
 const cookiesPaser = require("cookie-parser")
 const session = require("express-session")
-const MySQLStore = require("express");
-const { restart } = require('nodemon');
 const saltRounds = 10
 const app = express();
 require('dotenv').config();
