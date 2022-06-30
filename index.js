@@ -357,9 +357,10 @@ app.put('/api/recovery', (req, res) => {
             ((err, result) => {
                 if (err) {
                     console.log(err)
-                    res.send(result)
                 }
                 else {
+                    res.send(result)
+
                     res.send({ message: "User Account Updated Sucessfully" })
                 
                 }
